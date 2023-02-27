@@ -326,6 +326,14 @@ class RestCurlClient
         }
 
         $ch = curl_init();
+        
+        if (isset($this->curlOptions[0]) && (strlen($this->curlOptions[0]) == 0)) {
+		    unset($this->curlOptions[0]);
+		}
+		if (isset($this->curlOptions[1]) && (strlen($this->curlOptions[1]) == 0)) {
+			unset($this->curlOptions[1]);
+		}
+        
         curl_setopt_array($ch, $forced_options + $this->curlOptions);
         // Collect headers as array of arrays, keyed by lowercased header names.
         $headers = [];
